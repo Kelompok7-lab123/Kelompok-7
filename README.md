@@ -57,6 +57,22 @@ requirements.txt  # Dependensi
 perpustakaan.db   # Dibuat otomatis saat aplikasi pertama dijalankan
 ```
 
+## Deploy ke Streamlit Community Cloud
+
+1. Buka <https://share.streamlit.io> dan login dengan GitHub.
+2. Klik **Create app** / **New app**.
+3. Pilih repository `Kelompok7-lab123/Kelompok-7`, branch `main`, main file `app.py`.
+4. Klik **Deploy**.
+
+Atau gunakan tautan yang sudah terisi otomatis:
+
+```text
+https://share.streamlit.io/deploy?repository=Kelompok7-lab123/Kelompok-7&branch=main&mainModule=app.py
+```
+
+Catatan: pada Streamlit Community Cloud, file `perpustakaan.db` bersifat sementara
+(akan kembali ke data contoh setiap aplikasi di-reboot/redeploy).
+
 ## Anggota Kelompok 7
 
 1. Chandra Hernaldi (09)

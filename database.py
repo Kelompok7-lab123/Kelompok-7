@@ -3,13 +3,27 @@ Logika database SQLite untuk Sistem Peminjaman & Pengembalian Buku
 Perpustakaan Politeknik Negeri Semarang (studi kasus Kelompok 7).
 """
 
+import os
 import sqlite3
+import tempfile
 from contextlib import closing
 from datetime import date, timedelta
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent
-DB_PATH = BASE_DIR / "perpustakaan.db"
+
+
+def _resolve_db_path() -> Path:
+    """Gunakan folder aplikasi, atau folder sementara bila filesystem read-only
+    (misalnya saat dijalankan di Streamlit Community Cloud)."""
+    if os.environ.get("PERPUSTAKAAN_DB"):
+        return Path(os.environ["PERPUSTAKAAN_DB"])
+    if os.access(BASE_DIR, os.W_OK):
+        return BASE_DIR / "perpustakaan.db"
+    return Path(tempfile.gettempdir()) / "perpustakaan.db"
+
+
+DB_PATH = _resolve_db_path()
 
 # ---------------------------------------------------------------------------
 # Aturan perpustakaan (sesuai studi kasus)
